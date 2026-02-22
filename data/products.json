@@ -1,0 +1,164 @@
+[
+  {
+    "id": 1,
+    "name": "Bananas",
+    "imageUrl": "",
+    "price": 2.49,
+    "description": "Fresh yellow bananas rich in potassium and perfect for smoothies or snacks.",
+    "quality": "regular",
+    "countryOfOrigin": "Ecuador"
+  },
+  {
+    "id": 2,
+    "name": "Avocados",
+    "imageUrl": "",
+    "price": 3.99,
+    "description": "Creamy Hass avocados, ideal for salads and guacamole.",
+    "quality": "premium",
+    "countryOfOrigin": "Mexico"
+  },
+  {
+    "id": 3,
+    "name": "Strawberries",
+    "imageUrl": "",
+    "price": 4.29,
+    "description": "Sweet and juicy strawberries, freshly harvested.",
+    "quality": "premium",
+    "countryOfOrigin": "Spain"
+  },
+  {
+    "id": 4,
+    "name": "Blueberries",
+    "imageUrl": "",
+    "price": 3.79,
+    "description": "Antioxidant-rich blueberries with a sweet flavor.",
+    "quality": "regular",
+    "countryOfOrigin": "Poland"
+  },
+  {
+    "id": 5,
+    "name": "Apples",
+    "imageUrl": "",
+    "price": 2.99,
+    "description": "Crisp and sweet apples, perfect for snacking or baking.",
+    "quality": "regular",
+    "countryOfOrigin": "Italy"
+  },
+  {
+    "id": 6,
+    "name": "Oranges",
+    "imageUrl": "",
+    "price": 3.19,
+    "description": "Juicy oranges full of vitamin C.",
+    "quality": "regular",
+    "countryOfOrigin": "Greece"
+  },
+  {
+    "id": 7,
+    "name": "Tomatoes",
+    "imageUrl": "",
+    "price": 2.69,
+    "description": "Vine-ripened tomatoes with rich flavor.",
+    "quality": "premium",
+    "countryOfOrigin": "Netherlands"
+  },
+  {
+    "id": 8,
+    "name": "Cucumbers",
+    "imageUrl": "",
+    "price": 1.89,
+    "description": "Fresh and crunchy cucumbers, great for salads.",
+    "quality": "regular",
+    "countryOfOrigin": "Turkey"
+  },
+  {
+    "id": 9,
+    "name": "Carrots",
+    "imageUrl": "",
+    "price": 1.59,
+    "description": "Naturally sweet carrots, perfect raw or cooked.",
+    "quality": "regular",
+    "countryOfOrigin": "Germany"
+  },
+  {
+    "id": 10,
+    "name": "Broccoli",
+    "imageUrl": "",
+    "price": 2.39,
+    "description": "Fresh green broccoli rich in fiber and vitamins.",
+    "quality": "premium",
+    "countryOfOrigin": "France"
+  },
+  {
+    "id": 11,
+    "name": "Spinach",
+    "imageUrl": "",
+    "price": 2.19,
+    "description": "Tender baby spinach leaves, ideal for salads and smoothies.",
+    "quality": "premium",
+    "countryOfOrigin": "Italy"
+  },
+  {
+    "id": 12,
+    "name": "Potatoes",
+    "imageUrl": "",
+    "price": 1.29,
+    "description": "Versatile potatoes suitable for boiling, baking, or frying.",
+    "quality": "regular",
+    "countryOfOrigin": "Poland"
+  },
+  {
+    "id": 13,
+    "name": "Red Bell Peppers",
+    "imageUrl": "",
+    "price": 3.49,
+    "description": "Sweet and crunchy red peppers, perfect for grilling.",
+    "quality": "premium",
+    "countryOfOrigin": "Spain"
+  },
+  {
+    "id": 14,
+    "name": "Almonds",
+    "imageUrl": "",
+    "price": 5.99,
+    "description": "Raw whole almonds packed with nutrients.",
+    "quality": "premium",
+    "countryOfOrigin": "USA"
+  },
+  {
+    "id": 15,
+    "name": "Walnuts",
+    "imageUrl": "",
+    "price": 4.79,
+    "description": "Crunchy walnuts, great for baking and salads.",
+    "quality": "regular",
+    "countryOfOrigin": "Romania"
+  },
+  {
+    "id": 16,
+    "name": "Cashews",
+    "imageUrl": "",
+    "price": 6.49,
+    "description": "Creamy and lightly sweet cashew nuts.",
+    "quality": "premium",
+    "countryOfOrigin": "Vietnam"
+  },
+  {
+    "id": 17,
+    "name": "Hazelnuts",
+    "imageUrl": "",
+    "price": 5.29,
+    "description": "Rich and aromatic hazelnuts.",
+    "quality": "regular",
+    "countryOfOrigin": "Turkey"
+  },
+  {
+    "id": 18,
+    "name": "Pistachios",
+    "imageUrl": "",
+    "price": 6.99,
+    "description": "Shelled pistachios with a naturally savory taste.",
+    "quality": "premium",
+    "countryOfOrigin": "Iran"
+  }
+]

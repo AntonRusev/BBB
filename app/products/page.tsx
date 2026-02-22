@@ -1,7 +1,11 @@
-export default function UserProductsPage() {
+import { getAllProducts } from "@/services/product.service";
+import PorductsList from "@/components/ProductsList";
+
+export default async function UserProductsPage() {
+    // Get all products as an array
+    const products = await getAllProducts();
+
     return (
-        <div>
-            Products Page for USERS
-        </div>
+        <PorductsList products={products} />
     );
 };
