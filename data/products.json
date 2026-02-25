@@ -2,163 +2,175 @@
   {
     "id": 1,
     "name": "Bananas",
-    "imageUrl": "",
     "price": 2.49,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Banana-Single.jpg",
     "description": "Fresh yellow bananas rich in potassium and perfect for smoothies or snacks.",
-    "quality": "regular",
-    "countryOfOrigin": "Ecuador"
+    "category": "fruit",
+    "countryOfOrigin": "Ecuador",
+    "isOrganic": false
   },
   {
     "id": 2,
     "name": "Avocados",
-    "imageUrl": "",
     "price": 3.99,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c9/Hass_avocado.jpg",
     "description": "Creamy Hass avocados, ideal for salads and guacamole.",
-    "quality": "premium",
-    "countryOfOrigin": "Mexico"
+    "category": "fruit",
+    "countryOfOrigin": "Mexico",
+    "isOrganic": true,
+    "discountPercentage": 10
   },
   {
     "id": 3,
     "name": "Strawberries",
-    "imageUrl": "",
     "price": 4.29,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/29/PerfectStrawberry.jpg",
     "description": "Sweet and juicy strawberries, freshly harvested.",
-    "quality": "premium",
-    "countryOfOrigin": "Spain"
+    "category": "fruit",
+    "countryOfOrigin": "Spain",
+    "isOrganic": true
   },
   {
     "id": 4,
     "name": "Blueberries",
-    "imageUrl": "",
     "price": 3.79,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/15/Blueberries.jpg",
     "description": "Antioxidant-rich blueberries with a sweet flavor.",
-    "quality": "regular",
+    "category": "fruit",
     "countryOfOrigin": "Poland"
   },
   {
     "id": 5,
     "name": "Apples",
-    "imageUrl": "",
     "price": 2.99,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/15/Red_Apple.jpg",
     "description": "Crisp and sweet apples, perfect for snacking or baking.",
-    "quality": "regular",
-    "countryOfOrigin": "Italy"
+    "category": "fruit",
+    "countryOfOrigin": "Italy",
+    "discountPercentage": 5
   },
   {
     "id": 6,
     "name": "Oranges",
-    "imageUrl": "",
     "price": 3.19,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c4/Orange-Fruit-Pieces.jpg",
     "description": "Juicy oranges full of vitamin C.",
-    "quality": "regular",
+    "category": "fruit",
     "countryOfOrigin": "Greece"
   },
   {
     "id": 7,
     "name": "Tomatoes",
-    "imageUrl": "",
     "price": 2.69,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/89/Tomato_je.jpg",
     "description": "Vine-ripened tomatoes with rich flavor.",
-    "quality": "premium",
-    "countryOfOrigin": "Netherlands"
+    "category": "vegetable",
+    "countryOfOrigin": "Netherlands",
+    "isOrganic": true
   },
   {
     "id": 8,
     "name": "Cucumbers",
-    "imageUrl": "",
     "price": 1.89,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/96/Cucumber.jpg",
     "description": "Fresh and crunchy cucumbers, great for salads.",
-    "quality": "regular",
+    "category": "vegetable",
     "countryOfOrigin": "Turkey"
   },
   {
     "id": 9,
     "name": "Carrots",
-    "imageUrl": "",
     "price": 1.59,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7e/Carrots.jpg",
     "description": "Naturally sweet carrots, perfect raw or cooked.",
-    "quality": "regular",
-    "countryOfOrigin": "Germany"
+    "category": "vegetable",
+    "countryOfOrigin": "Germany",
+    "isOrganic": true
   },
   {
     "id": 10,
     "name": "Broccoli",
-    "imageUrl": "",
     "price": 2.39,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/03/Broccoli_and_cross_section_edit.jpg",
     "description": "Fresh green broccoli rich in fiber and vitamins.",
-    "quality": "premium",
+    "category": "vegetable",
     "countryOfOrigin": "France"
   },
   {
     "id": 11,
     "name": "Spinach",
-    "imageUrl": "",
     "price": 2.19,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0c/Spinach_leaves.jpg",
     "description": "Tender baby spinach leaves, ideal for salads and smoothies.",
-    "quality": "premium",
-    "countryOfOrigin": "Italy"
+    "category": "vegetable",
+    "countryOfOrigin": "Italy",
+    "isOrganic": true
   },
   {
     "id": 12,
     "name": "Potatoes",
-    "imageUrl": "",
     "price": 1.29,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a0/Potato_and_cross_section.jpg",
     "description": "Versatile potatoes suitable for boiling, baking, or frying.",
-    "quality": "regular",
-    "countryOfOrigin": "Poland"
+    "category": "vegetable",
+    "countryOfOrigin": "Poland",
+    "discountPercentage": 15
   },
   {
     "id": 13,
     "name": "Red Bell Peppers",
-    "imageUrl": "",
     "price": 3.49,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/85/Red_bell_pepper.jpg",
     "description": "Sweet and crunchy red peppers, perfect for grilling.",
-    "quality": "premium",
+    "category": "vegetable",
     "countryOfOrigin": "Spain"
   },
   {
     "id": 14,
     "name": "Almonds",
-    "imageUrl": "",
     "price": 5.99,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/36/Almonds.jpg",
     "description": "Raw whole almonds packed with nutrients.",
-    "quality": "premium",
-    "countryOfOrigin": "USA"
+    "category": "nut",
+    "countryOfOrigin": "USA",
+    "isOrganic": true
   },
   {
     "id": 15,
     "name": "Walnuts",
-    "imageUrl": "",
     "price": 4.79,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1b/Walnuts_-_whole_and_open_with_kernel.jpg",
     "description": "Crunchy walnuts, great for baking and salads.",
-    "quality": "regular",
+    "category": "nut",
     "countryOfOrigin": "Romania"
   },
   {
     "id": 16,
     "name": "Cashews",
-    "imageUrl": "",
     "price": 6.49,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/13/Cashew_nuts.jpg",
     "description": "Creamy and lightly sweet cashew nuts.",
-    "quality": "premium",
-    "countryOfOrigin": "Vietnam"
+    "category": "nut",
+    "countryOfOrigin": "Vietnam",
+    "discountPercentage": 8
   },
   {
     "id": 17,
     "name": "Hazelnuts",
-    "imageUrl": "",
     "price": 5.29,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6b/Hazelnuts_-_whole_and_cracked_with_kernel.jpg",
     "description": "Rich and aromatic hazelnuts.",
-    "quality": "regular",
+    "category": "nut",
     "countryOfOrigin": "Turkey"
   },
   {
     "id": 18,
     "name": "Pistachios",
-    "imageUrl": "",
     "price": 6.99,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3a/Pistachios_in_a_bowl.jpg",
     "description": "Shelled pistachios with a naturally savory taste.",
-    "quality": "premium",
-    "countryOfOrigin": "Iran"
+    "category": "nut",
+    "countryOfOrigin": "Iran",
+    "isOrganic": true
   }
 ]
