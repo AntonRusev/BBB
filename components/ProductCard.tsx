@@ -1,12 +1,17 @@
+"use client"
+
 import Link from "next/link";
 
 import { Product } from "@/types/product";
+import { useCartStore } from "@/store/cartStore";
 
 type Props = {
   product: Product
 }
 
 export default function ProductCard({ product }: Props) {
+  const addToCart = useCartStore((state) => state.addToCart)
+
   // Calculating the final discounted price if there is a discount percentage
   const discountedPrice =
     product.discountPercentage
@@ -102,7 +107,10 @@ export default function ProductCard({ product }: Props) {
         </p>
 
         {/* Add to cart button */}
-        <button className="mt-3 w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded-xl transition-colors duration-200">
+        <button
+          onClick={() => addToCart(product)}
+          className="mt-3 w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded-xl transition-colors duration-200"
+        >
           Add to cart
         </button>
       </div>
