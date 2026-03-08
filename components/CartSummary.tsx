@@ -2,6 +2,8 @@
 
 import { useCartStore } from "@/store/cartStore";
 
+import CouponInput from "./CouponInput";
+
 export default function CartSummary() {
   const items = useCartStore((state) => state.items)
   const totalItems = useCartStore((state) => state.totalItems())
@@ -30,6 +32,9 @@ export default function CartSummary() {
       <hr className="my-3" />
 
       <p>Total Items: {totalItems}</p>
+
+      <CouponInput />
+      
       <p className="font-bold text-lg">
         Total: ${totalPrice.toFixed(2)}
       </p>

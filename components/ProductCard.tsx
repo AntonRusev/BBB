@@ -4,6 +4,7 @@ import Link from "next/link";
 
 import { Product } from "@/types/product";
 import { useCartStore } from "@/store/cartStore";
+import { calculateDiscountedPrice } from "@/lib/pricing";
 
 type Props = {
   product: Product
@@ -13,10 +14,7 @@ export default function ProductCard({ product }: Props) {
   const addToCart = useCartStore((state) => state.addToCart)
 
   // Calculating the final discounted price if there is a discount percentage
-  const discountedPrice =
-    product.discountPercentage
-      ? product.price * (1 - product.discountPercentage / 100)
-      : null
+  const discountedPrice = calculateDiscountedPrice(product);
 
   return (
     <div className="relative bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-green-100 group">

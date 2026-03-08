@@ -1,31 +1,39 @@
 import { create } from "zustand"
 import { persist } from "zustand/middleware"
+
 import { Product } from "@/types/product"
 import { CartItem } from "@/types/cart"
+import { Coupon } from "@/types/coupon"
+import { calculateCartTotal } from "@/lib/pricing"
 
 type CartStore = {
     items: CartItem[]
+    coupon: Coupon | null
+
     addToCart: (product: Product) => void
     removeFromCart: (id: number) => void
     increaseQuantity: (id: number) => void
     decreaseQuantity: (id: number) => void
     clearCart: () => void
+
+    setCoupon: (coupon: Coupon | null) => void
+
     totalItems: () => number
     totalPrice: () => number
 }
-
-
 
 export const useCartStore = create<CartStore>()(
     // Persist the cart data in the localStorage
     persist(
         (set, get) => ({
             items: [],
+            coupon: null,
+
             addToCart: (product) => {
                 const existing = get().items.find((item) => item.id === product.id)
 
                 if (existing) {
-                    // If the product already exists in the store, increase the quantity by one
+                    // If the product already exists in the cart, increase the quantity by one
                     set({
                         items: get().items.map((item) => {
                             return (
@@ -36,7 +44,7 @@ export const useCartStore = create<CartStore>()(
                         })
                     })
                 } else {
-                    // If the product does not exist in the store, add it with a starting quantity of 1
+                    // If the product does not exist in the cart, add it with a starting quantity of 1
                     set({
                         items: [...get().items, { ...product, quantity: 1 }]
                     })
@@ -44,7 +52,7 @@ export const useCartStore = create<CartStore>()(
             },
 
             removeFromCart: (id) =>
-                // Remove a particular product from the store based on its Id
+                // Remove a particular product from the cart based on its Id
                 set({
                     items: get().items.filter((item) => item.id !== id),
                 }),
@@ -70,24 +78,20 @@ export const useCartStore = create<CartStore>()(
                                 ? { ...item, quantity: item.quantity - 1 }
                                 : item
                         )
-                        .filter((item) => item.quantity > 0), // removes the product from the store if the quantity reaches 0
+                        .filter((item) => item.quantity > 0), // Remove the product from the cart if the quantity reaches 0
                 }),
 
-            clearCart: () => set({ items: [] }), //clear the entire store
+            clearCart: () => set({ items: [] }), // Remove all the items in the cart
+
+            setCoupon: (coupon) => set({ coupon }), // Set coupon
 
             totalItems: () =>
-                // Show the total items in the store
-                get().items.reduce((acc, item) => acc + item.quantity, 0),
+                // Show the total items in the cart
+                get().items.reduce((total, item) => total + item.quantity, 0),
 
             totalPrice: () =>
-                // Calculate the discounts and show the total price of the products in the store
-                get().items.reduce((acc, item) => {
-                    const discount = item.discountPercentage ?? 0
-                    const discountedPrice =
-                        item.price - (item.price * discount) / 100
-
-                    return acc + discountedPrice * item.quantity
-                }, 0),
+                // Calculate the discounts and apply coupons(if any) then show the total price of the products in the cart
+                calculateCartTotal(get().items, get().coupon),
         }),
         {
             name: "cart-storage", // key in localStorage
