@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Product } from "@/types/product";
 import { useCartStore } from "@/store/cartStore";
 import { calculateDiscountedPrice } from "@/lib/pricing";
+import { getCategoryStyles } from "@/utils/categoryStyles";
 
 type Props = {
   product: Product
@@ -15,6 +16,9 @@ export default function ProductCard({ product }: Props) {
 
   // Calculating the final discounted price if there is a discount percentage
   const discountedPrice = calculateDiscountedPrice(product);
+
+  // Getting the styling colours for the product's category
+  const categoryStyles = getCategoryStyles(product.category);
 
   return (
     <div className="relative bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-green-100 group">
@@ -62,12 +66,7 @@ export default function ProductCard({ product }: Props) {
 
         {/* Category Tag */}
         <span
-          className={`inline-block text-xs font-medium px-2 py-1 rounded-full ${product.category === "fruit"
-            ? "bg-orange-100 text-orange-700"
-            : product.category === "vegetable"
-              ? "bg-lime-100 text-lime-700"
-              : "bg-sky-100 text-sky-700"
-            }`}
+          className={`inline-block text-xs font-medium px-2 py-1 rounded-full ${categoryStyles}`}
         >
           {product.category}
         </span>
@@ -109,8 +108,8 @@ export default function ProductCard({ product }: Props) {
           onClick={() => addToCart(product)}
           disabled={product.stock === 0} // If product is out of stock disable the button
           className={`mt-3 w-full py-2 rounded-xl transition-colors duration-200 text-white ${product.stock === 0
-              ? "bg-red-400"
-              : "bg-green-600 hover:bg-green-700"
+            ? "bg-red-400"
+            : "bg-green-600 hover:bg-green-700"
             }`}
         >
           {product.stock === 0 ? "Out of Stock" : "Add to Cart"}

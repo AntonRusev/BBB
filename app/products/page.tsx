@@ -1,5 +1,5 @@
 import { getAllProducts } from "@/services/product.service";
-import PorductsList from "@/components/ProductsList";
+import PorductsList from "@/components/products/ProductsList";
 
 export default async function UserProductsPage() {
     // Get all products as an array
