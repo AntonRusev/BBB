@@ -107,9 +107,13 @@ export default function ProductCard({ product }: Props) {
         {/* Add to cart button */}
         <button
           onClick={() => addToCart(product)}
-          className="mt-3 w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded-xl transition-colors duration-200"
+          disabled={product.stock === 0} // If product is out of stock disable the button
+          className={`mt-3 w-full py-2 rounded-xl transition-colors duration-200 text-white ${product.stock === 0
+              ? "bg-red-400"
+              : "bg-green-600 hover:bg-green-700"
+            }`}
         >
-          Add to cart
+          {product.stock === 0 ? "Out of Stock" : "Add to Cart"}
         </button>
       </div>
     </div>

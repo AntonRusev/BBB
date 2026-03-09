@@ -8,4 +8,5 @@ export type Product = {
     countryOfOrigin: string;
     isOrganic?: boolean;
     discountPercentage?: number;
+    stock: number
 }

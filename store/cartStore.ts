@@ -33,6 +33,9 @@ export const useCartStore = create<CartStore>()(
                 const existing = get().items.find((item) => item.id === product.id)
 
                 if (existing) {
+                    // Check if there is enough of the product in stock
+                    if (existing.quantity >= product.stock) return;
+
                     // If the product already exists in the cart, increase the quantity by one
                     set({
                         items: get().items.map((item) => {
@@ -44,6 +47,9 @@ export const useCartStore = create<CartStore>()(
                         })
                     })
                 } else {
+                    // Check if there is at least the minimum amount of product (1) in stock required in order to add it to the cart
+                    if (product.stock < 1) return;
+
                     // If the product does not exist in the cart, add it with a starting quantity of 1
                     set({
                         items: [...get().items, { ...product, quantity: 1 }]
@@ -57,8 +63,16 @@ export const useCartStore = create<CartStore>()(
                     items: get().items.filter((item) => item.id !== id),
                 }),
 
-            increaseQuantity: (id) =>
-                // To be used only inside the Cart component
+            increaseQuantity: (id) => {
+                // To be used only in the Cart component
+
+                // Check if the product already exists in the cart
+                const item = get().items.find((i) => i.id === id)
+                if (!item) return;
+
+                // Check if there is enough of the product in stock
+                if (item.quantity >= item.stock) return
+
                 // Increase the quantity of the product by 1
                 set({
                     items: get().items.map((item) =>
@@ -66,10 +80,16 @@ export const useCartStore = create<CartStore>()(
                             ? { ...item, quantity: item.quantity + 1 }
                             : item
                     ),
-                }),
+                })
+            },
 
-            decreaseQuantity: (id) =>
-                // To be used only inside the Cart component
+            decreaseQuantity: (id) => {
+                // To be used only in the Cart component
+
+                // Check if the product already exists in the cart
+                const item = get().items.find((i) => i.id === id)
+                if (!item) return;
+
                 // Decrease the quantity of the product by 1
                 set({
                     items: get()
@@ -79,7 +99,8 @@ export const useCartStore = create<CartStore>()(
                                 : item
                         )
                         .filter((item) => item.quantity > 0), // Remove the product from the cart if the quantity reaches 0
-                }),
+                })
+            },
 
             clearCart: () => set({ items: [] }), // Remove all the items in the cart
 
