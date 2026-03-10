@@ -1,22 +1,15 @@
 import Link from "next/link";
 
-import { getProductById } from "@/services/product.service";
 import { calculateDiscountedPrice } from "@/lib/pricing";
 import { getCategoryStyles } from "@/utils/categoryStyles";
-
-// All possible params that are going to be used have to be added in the type here
+import { Product } from "@/types/product";
+import AddToCartButton from "./AddToCartButton";
 
 type ProductDetailsProps = {
-    id: string
+    product: Product
 }
 
-export default async function ProductDetails({ id }: ProductDetailsProps) {
-    const product = await getProductById(Number(id)); // Convert the id as a Number
-
-    // If such product doesn't exist
-    // TODO redirect to a custom Product not found page
-    if (!product) return <div>Product not found</div>
-
+export default async function ProductDetails({ product }: ProductDetailsProps) {
     // Calculating the discounted price
     const discountedPrice = calculateDiscountedPrice(product);
 
@@ -34,7 +27,6 @@ export default async function ProductDetails({ id }: ProductDetailsProps) {
                 <span>/</span>
                 <span className="text-gray-700 font-medium">{product.name}</span>
             </div>
-
 
             {/* Back button */}
             <Link
@@ -116,19 +108,13 @@ export default async function ProductDetails({ id }: ProductDetailsProps) {
                         </p>
                     )}
 
-                    {/* Country */}
+                    {/* Country Origin */}
                     <p className="text-sm text-gray-500">
                         Origin: <span className="font-medium">{product.countryOfOrigin}</span>
                     </p>
 
-                    {/* Add to cart */}
-                    <button className={`mt-4 w-full py-3 rounded-xl font-semibold transition-all duration-200 text-white ${product.stock === 0
-                        ? "bg-red-400"
-                        : "bg-green-600 hover:bg-green-700"
-                        }`}
-                    >
-                        {product.stock === 0 ? "Out of Stock" : "Add to Cart"}
-                    </button>
+                    {/* Add to cart button*/}
+                    <AddToCartButton product={product} />
 
                 </div>
             </div>

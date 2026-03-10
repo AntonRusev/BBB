@@ -1,19 +1,15 @@
-"use client"
-
 import Link from "next/link";
 
 import { Product } from "@/types/product";
-import { useCartStore } from "@/store/cartStore";
 import { calculateDiscountedPrice } from "@/lib/pricing";
 import { getCategoryStyles } from "@/utils/categoryStyles";
+import AddToCartButton from "./AddToCartButton";
 
 type Props = {
   product: Product
 }
 
 export default function ProductCard({ product }: Props) {
-  const addToCart = useCartStore((state) => state.addToCart)
-
   // Calculating the final discounted price if there is a discount percentage
   const discountedPrice = calculateDiscountedPrice(product);
 
@@ -104,16 +100,8 @@ export default function ProductCard({ product }: Props) {
         </p>
 
         {/* Add to cart button */}
-        <button
-          onClick={() => addToCart(product)}
-          disabled={product.stock === 0} // If product is out of stock disable the button
-          className={`mt-3 w-full py-2 rounded-xl transition-colors duration-200 text-white ${product.stock === 0
-            ? "bg-red-400"
-            : "bg-green-600 hover:bg-green-700"
-            }`}
-        >
-          {product.stock === 0 ? "Out of Stock" : "Add to Cart"}
-        </button>
+        <AddToCartButton product={product} />
+
       </div>
     </div>
   )
