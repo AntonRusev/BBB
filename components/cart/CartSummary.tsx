@@ -3,12 +3,10 @@
 import { useCartStore } from "@/store/cartStore";
 
 import CartItemCard from "./CartItemCard";
-import CouponInput from "../CouponInput";
+import CartFooter from "./CartFooter";
 
 export default function CartSummary() {
   const items = useCartStore((state) => state.items)
-  const totalItems = useCartStore((state) => state.totalItems())
-  const totalPrice = useCartStore((state) => state.totalPrice())
 
   // If no items in the cart
   if (!items.length) {
@@ -32,16 +30,7 @@ export default function CartSummary() {
         <CartItemCard key={item.id} item={item} />
       ))}
 
-      <hr className="my-3" />
-
-      <p>Total Items: {totalItems}</p>
-
-      <CouponInput />
-
-      <p className="font-bold text-lg">
-        Total: ${totalPrice.toFixed(2)}
-      </p>
-
+      <CartFooter />
     </div>
   )
 }

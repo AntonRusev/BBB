@@ -85,7 +85,7 @@ export default async function ProductDetails({ product }: ProductDetailsProps) {
 
                     {/* Price */}
                     <div className="flex items-center gap-4 text-xl">
-                        {discountedPrice ? (
+                        {discountedPrice !== product.price ? (
                             <>
                                 <span className="text-gray-400 line-through">
                                     €{product.price.toFixed(2)}
@@ -95,7 +95,7 @@ export default async function ProductDetails({ product }: ProductDetailsProps) {
                                 </span>
                             </>
                         ) : (
-                            <span className="text-orange-600 font-bold text-2xl">
+                            <span className="text-orange-300 font-bold text-2xl">
                                 €{product.price.toFixed(2)}
                             </span>
                         )}

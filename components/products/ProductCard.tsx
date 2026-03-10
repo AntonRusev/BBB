@@ -75,7 +75,7 @@ export default function ProductCard({ product }: Props) {
         {/* Price */}
         <div className="flex items-center gap-2">
           {/* Discounts */}
-          {discountedPrice ? (
+          {discountedPrice !== product.price ? (
             <>
               {/* Old Price */}
               <span className="text-gray-400 line-through text-sm">
@@ -88,7 +88,7 @@ export default function ProductCard({ product }: Props) {
             </>
           ) : (
             // Regular price
-            <span className="text-orange-600 font-bold">
+            <span className="text-orange-300 font-bold">
               €{product.price.toFixed(2)}
             </span>
           )}
