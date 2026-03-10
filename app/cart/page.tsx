@@ -1,7 +1,9 @@
-import CartSummary from "@/components/CartSummary"
+import CartSummary from "@/components/cart/CartSummary"
 
 export default function CartPage() {
     return (
-        <CartSummary />
-    )
+        <div className="container mx-auto p-6">
+            <CartSummary />
+        </div>
+    );
 }

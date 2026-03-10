@@ -2,7 +2,8 @@
 
 import { useCartStore } from "@/store/cartStore";
 
-import CouponInput from "./CouponInput";
+import CartItemCard from "./CartItemCard";
+import CouponInput from "../CouponInput";
 
 export default function CartSummary() {
   const items = useCartStore((state) => state.items)
@@ -12,21 +13,23 @@ export default function CartSummary() {
   // If no items in the cart
   if (!items.length) {
     return (
-      <p>Your cart is empty.</p>
-    )
+      <div className="text-center py-20">
+        <h2 className="text-2xl font-semibold">
+          Your cart is empty 🛒
+        </h2>
+      </div>
+    );
   }
 
   return (
-    <div className="p-4 border rounded-lg">
-      <h2 className="text-xl font-bold mb-4">Cart</h2>
+    <div className="max-w-3xl mx-auto flex flex-col gap-4">
+
+      <h1 className="text-3xl font-bold mb-4">
+        Your Cart
+      </h1>
 
       {items.map((item) => (
-        <div key={item.id} className="flex justify-between mb-2">
-          <span>
-            {item.name} x {item.quantity}
-          </span>
-          <span>${item.price.toFixed(2)}</span>
-        </div>
+        <CartItemCard key={item.id} item={item} />
       ))}
 
       <hr className="my-3" />
@@ -34,10 +37,11 @@ export default function CartSummary() {
       <p>Total Items: {totalItems}</p>
 
       <CouponInput />
-      
+
       <p className="font-bold text-lg">
         Total: ${totalPrice.toFixed(2)}
       </p>
+
     </div>
   )
 }
