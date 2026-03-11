@@ -1,5 +1,7 @@
 "use client";
 
+import { toast } from "sonner"
+
 import { Product } from "@/types/product";
 import { useCartStore } from "@/store/cartStore";
 
@@ -10,9 +12,15 @@ type Props = {
 export default function AddToCartButton({ product }: Props) {
   const addToCart = useCartStore((state) => state.addToCart);
 
+
+  const handleAdd = () => {
+    addToCart(product)
+    toast.success(`${product.name} added to cart`)
+  }
+
   return (
     <button
-      onClick={() => addToCart(product)}
+      onClick={handleAdd}
       disabled={product.stock === 0}
       className={`mt-4 w-full py-3 rounded-xl text-white
         ${product.stock === 0

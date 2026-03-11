@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { toast } from "sonner"
 
 import couponsData from "@/data/coupons.json"
 import { Coupon } from "@/types/coupon"
@@ -18,8 +19,10 @@ export default function CouponInput() {
 
         if (found) {
             setCoupon(found)
+            toast.success(`Coupon ${found.code} applied`)
         } else {
             setCoupon(null)
+            toast.error("Invalid coupon code")
         }
 
         setCode(""); // Clear the input field

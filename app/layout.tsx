@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 
 import "./globals.css";
 
+import { Toaster } from "sonner"
+
 import NavBar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -23,6 +25,8 @@ export default function RootLayout({
 
         <main>
           {children}
+
+          <Toaster position="bottom-center" richColors />
         </main>
 
         <Footer />
