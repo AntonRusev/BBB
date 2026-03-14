@@ -4,6 +4,8 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation"
 
+import CartBadge from "./cart/CartBadge";
+
 export default function NavBar() {
     const [isOpen, setIsOpen] = useState(false);
     const pathname = usePathname();
@@ -52,10 +54,10 @@ export default function NavBar() {
                         </li>
                         <li>
                             <Link href="/cart" className={linkStyle("/cart")}>
-                                Cart
+                                <CartBadge />
                             </Link>
                         </li>
-                        <li>
+                        {/* <li>
                             <Link href="/login" className={linkStyle("/login")}>
                                 Login
                             </Link>
@@ -64,7 +66,7 @@ export default function NavBar() {
                             <Link href="/register" className={linkStyle("/register")}>
                                 Register
                             </Link>
-                        </li>
+                        </li> */}
                     </ul>
 
                     {/* Divider */}
