@@ -1,12 +1,21 @@
 "use client"
 
 import { useCartStore } from "@/store/cartStore";
+import { useHydrated } from "@/hooks/useHydrated"
 
 import CartItemCard from "./CartItemCard";
 import CartFooter from "./CartFooter";
 
 export default function CartSummary() {
+  const hydrated = useHydrated()
+
   const items = useCartStore((state) => state.items)
+
+  // Delay rendering Zustand values until hydration completes to prevent mismatch with the server component
+  // TODO add a custom loader or spinner
+  if (!hydrated) {
+    return <p className="text-center py-10">Loading cart...</p>;
+  }
 
   // If no items in the cart
   if (!items.length) {
