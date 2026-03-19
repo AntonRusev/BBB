@@ -33,7 +33,7 @@ export const useRecentlyViewedStore = create<RecentlyViewedStore>()(
             clearRecentlyViewed: () => set({ products: [] }),
         }),
         {
-            name: "recently-viewed-storage",
+            name: "recently-viewed-storage", // key in localStorage
         }
     )
 )

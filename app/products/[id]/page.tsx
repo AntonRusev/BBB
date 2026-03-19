@@ -21,8 +21,7 @@ export default async function ProductItemPage({ params }: PageParams) {
     if (!product) return <div>Product not found</div>;
 
     // Finding related products
-    const limitOfRelatedProducts = 4; // Setting the maximum number of related products shown
-    const listOfRelatedProducts = await getRelatedProducts(product, limitOfRelatedProducts);
+    const listOfRelatedProducts = await getRelatedProducts(product);
 
     return (
         <div className="max-w-6xl mx-auto px-4 py-8">
@@ -40,10 +39,7 @@ export default async function ProductItemPage({ params }: PageParams) {
 
             {/* Related Products */}
             <section className="mb-12">
-                <RelatedProducts
-                    products={listOfRelatedProducts}
-                    gridColumns={limitOfRelatedProducts}
-                />
+                <RelatedProducts products={listOfRelatedProducts} />
             </section>
         </div>
     );

@@ -1,7 +1,7 @@
 "use client"
 
 import { useRecentlyViewedStore } from "@/store/recentlyViewedStore"
-import ProductCard from "./ProductCard"
+import ProductCardCompact from "./ProductCardCompact"
 
 export default function RecentlyViewed() {
     const products = useRecentlyViewedStore((s) => s.products)
@@ -30,7 +30,7 @@ export default function RecentlyViewed() {
             {/* THe number of columns in the grid should be equal to the number of products tracked/shown (the value of the MAX_ITEMS variable in the RecentlyViewed store ) */}
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
                 {products.map((product) => (
-                    <ProductCard
+                    <ProductCardCompact
                         key={product.id}
                         product={product}
                     />

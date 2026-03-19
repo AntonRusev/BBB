@@ -31,6 +31,7 @@ export async function getRelatedProducts(
         return isNotCurrent && isSameCategory && matchesOrganic;
       }
       )
+      .sort(() => 0.5 - Math.random()) // randomizing the result to make it feel less static
       .slice(0, limit)
   );
 }
