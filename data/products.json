@@ -8,7 +8,8 @@
     "category": "fruit",
     "countryOfOrigin": "Ecuador",
     "isOrganic": false,
-    "stock": 50
+    "stock": 50,
+    "isFeatured": true
   },
   {
     "id": 2,
@@ -20,7 +21,8 @@
     "countryOfOrigin": "Mexico",
     "isOrganic": true,
     "discountPercentage": 10,
-    "stock": 10
+    "stock": 10,
+    "isFeatured": false
   },
   {
     "id": 3,
@@ -31,7 +33,8 @@
     "category": "fruit",
     "countryOfOrigin": "Spain",
     "isOrganic": true,
-    "stock": 5
+    "stock": 5,
+    "isFeatured": false
   },
   {
     "id": 4,
@@ -41,7 +44,8 @@
     "description": "Antioxidant-rich blueberries with a sweet flavor.",
     "category": "fruit",
     "countryOfOrigin": "Poland",
-    "stock": 0
+    "stock": 0,
+    "isFeatured": false
   },
   {
     "id": 5,
@@ -52,7 +56,8 @@
     "category": "fruit",
     "countryOfOrigin": "Italy",
     "discountPercentage": 5,
-    "stock": 50
+    "stock": 50,
+    "isFeatured": false
   },
   {
     "id": 6,
@@ -62,7 +67,8 @@
     "description": "Juicy oranges full of vitamin C.",
     "category": "fruit",
     "countryOfOrigin": "Greece",
-    "stock": 100
+    "stock": 100,
+    "isFeatured": false
   },
   {
     "id": 7,
@@ -73,7 +79,8 @@
     "category": "vegetable",
     "countryOfOrigin": "Netherlands",
     "isOrganic": true,
-    "stock": 40
+    "stock": 40,
+    "isFeatured": false
   },
   {
     "id": 8,
@@ -83,7 +90,8 @@
     "description": "Fresh and crunchy cucumbers, great for salads.",
     "category": "vegetable",
     "countryOfOrigin": "Turkey",
-    "stock": 60
+    "stock": 60,
+    "isFeatured": false
   },
   {
     "id": 9,
@@ -94,7 +102,8 @@
     "category": "vegetable",
     "countryOfOrigin": "Germany",
     "isOrganic": true,
-    "stock": 50
+    "stock": 50,
+    "isFeatured": false
   },
   {
     "id": 10,
@@ -104,7 +113,8 @@
     "description": "Fresh green broccoli rich in fiber and vitamins.",
     "category": "vegetable",
     "countryOfOrigin": "France",
-    "stock": 20
+    "stock": 20,
+    "isFeatured": false
   },
   {
     "id": 11,
@@ -115,7 +125,8 @@
     "category": "vegetable",
     "countryOfOrigin": "Italy",
     "isOrganic": true,
-    "stock": 12
+    "stock": 12,
+    "isFeatured": false
   },
   {
     "id": 12,
@@ -126,7 +137,8 @@
     "category": "vegetable",
     "countryOfOrigin": "Poland",
     "discountPercentage": 15,
-    "stock": 150
+    "stock": 150,
+    "isFeatured": true
   },
   {
     "id": 13,
@@ -136,7 +148,8 @@
     "description": "Sweet and crunchy red peppers, perfect for grilling.",
     "category": "vegetable",
     "countryOfOrigin": "Spain",
-    "stock": 8
+    "stock": 8,
+    "isFeatured": false
   },
   {
     "id": 14,
@@ -147,7 +160,8 @@
     "category": "nut",
     "countryOfOrigin": "USA",
     "isOrganic": true,
-    "stock": 15
+    "stock": 15,
+    "isFeatured": true
   },
   {
     "id": 15,
@@ -157,7 +171,8 @@
     "description": "Crunchy walnuts, great for baking and salads.",
     "category": "nut",
     "countryOfOrigin": "Romania",
-    "stock": 20
+    "stock": 20,
+    "isFeatured": false
   },
   {
     "id": 16,
@@ -168,7 +183,8 @@
     "category": "nut",
     "countryOfOrigin": "Vietnam",
     "discountPercentage": 8,
-    "stock": 8
+    "stock": 8,
+    "isFeatured": false
   },
   {
     "id": 17,
@@ -178,7 +194,8 @@
     "description": "Rich and aromatic hazelnuts.",
     "category": "nut",
     "countryOfOrigin": "Turkey",
-    "stock": 12
+    "stock": 12,
+    "isFeatured": false
   },
   {
     "id": 18,
@@ -189,6 +206,7 @@
     "category": "nut",
     "countryOfOrigin": "Iran",
     "isOrganic": true,
-    "stock": 11
+    "stock": 11,
+    "isFeatured": false
   }
 ]
