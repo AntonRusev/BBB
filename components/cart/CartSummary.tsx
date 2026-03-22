@@ -36,7 +36,7 @@ export default function CartSummary() {
       </h1>
 
       {items.map((item) => (
-        <CartItemCard key={item.id} item={item} />
+        <CartItemCard key={item._id} item={item} />
       ))}
 
       <CartFooter />

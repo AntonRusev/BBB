@@ -1,55 +1,98 @@
-import rawProducts from "../data/products.json"
+import { connectDB } from "@/config/database"
+
+import ProductModel from "@/models/Product"
 import { Product } from "@/types/product"
 
-// TODO - change this when connecting a real DB instead of a JSON
-const products = rawProducts as Product[];
+// Connect to the DataBase
+await connectDB();
 
 export async function getAllProducts(): Promise<Product[]> {
-  return Promise.resolve(products);
+  const products = await ProductModel.find().lean()
+
+  return products.map(p => ({
+    // Converting the data into serializable values 
+    _id: p._id.toString(),
+    name: p.name,
+    price: p.price,
+    imageUrl: p.imageUrl,
+    description: p.description,
+    category: p.category,
+    countryOfOrigin: p.countryOfOrigin,
+    isOrganic: p.isOrganic,
+    stock: p.stock,
+    isFeatured: p.isFeatured,
+  }));
 }
 
-export async function getProductById(id: number): Promise<Product | undefined> {
-  return Promise.resolve(
-    products.find((product) => product.id === id)
-  );
+export async function getProductById(id: string): Promise<Product | undefined> {
+  const product = await ProductModel.findById(id).lean();
+
+  return {
+    ...product,
+    _id: product._id.toString()
+  };
+
+  // return await ProductModel.findById(id).lean();
 }
 
 export async function getRelatedProducts(
   currentProduct: Product,
   limit = 4 // The limit for related products shown
 ): Promise<Product[]> {
+  const relatedProducts = await ProductModel.aggregate([
+    {
+      $match: {
+        _id: { $ne: currentProduct._id },
+        category: currentProduct.category,
+        ...(currentProduct.isOrganic && { isOrganic: true }), // If the current product is organic, only show other organic products
+      },
+    },
+    { $sample: { size: limit } }, // randomizing the result to make it feel less static
+  ]);
 
-  return Promise.resolve(
-    products
-      .filter((p) => {
-        const isNotCurrent = p.id !== currentProduct.id;
-        const isSameCategory = p.category === currentProduct.category;
-
-        // If the current product is organic, only show other organic products
-        const matchesOrganic = currentProduct.isOrganic ? p.isOrganic : true;
-
-        return isNotCurrent && isSameCategory && matchesOrganic;
-      }
-      )
-      .sort(() => 0.5 - Math.random()) // randomizing the result to make it feel less static TODO - find another way to do this
-      .slice(0, limit)
-  );
+  return relatedProducts.map(p => ({
+    // Converting the data into serializable values 
+    _id: p._id.toString(),
+    name: p.name,
+    price: p.price,
+    imageUrl: p.imageUrl,
+    description: p.description,
+    category: p.category,
+    countryOfOrigin: p.countryOfOrigin,
+    isOrganic: p.isOrganic,
+    stock: p.stock,
+    isFeatured: p.isFeatured,
+  }));
 }
 
 export async function getFeaturedProducts(
   limit = 3
 ): Promise<Product[]> {
-
-  return Promise.resolve(
-    products
-      .filter(
-        (p) =>
+  const featuredProducts = await ProductModel.aggregate([
+    {
+      $match: {
+        $or: [
           // Only products tagged as featured, organic ones or products with discout higher than a certain treshold are considered as Featured
-          p.isFeatured ||
-          (p.discountPercentage ?? 0) >= 20 ||
-          p.isOrganic
-      )
-      .sort(() => 0.5 - Math.random()) // randomizing the result to make it feel less static TODO - find another way to do this
-      .slice(0, limit)
-  );
+          { isFeatured: true },
+          { discountPercentage: { $gte: 20 } },
+          { isOrganic: true },
+        ],
+      },
+    },
+    { $sample: { size: limit } }, // randomizing the result to make it feel less static
+  ]);
+
+  return featuredProducts.map(p => ({
+    // Converting the data into serializable values 
+    _id: p._id.toString(),
+    name: p.name,
+    price: p.price,
+    imageUrl: p.imageUrl,
+    description: p.description,
+    category: p.category,
+    countryOfOrigin: p.countryOfOrigin,
+    isOrganic: p.isOrganic,
+    stock: p.stock,
+    isFeatured: p.isFeatured,
+  }));
 }

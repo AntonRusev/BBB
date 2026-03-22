@@ -49,7 +49,7 @@ export default function ProductCard({ product }: Props) {
         <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
           {/* Link to the Product */}
           <Link
-            href={`/products/${product.id}`}
+            href={`/products/${product._id}`}
             className="bg-white text-green-700 px-4 py-2 rounded-xl font-semibold hover:bg-green-100 transition"
           >
             Details

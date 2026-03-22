@@ -31,7 +31,7 @@ export default function RecentlyViewed() {
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
                 {products.map((product) => (
                     <ProductCardCompact
-                        key={product.id}
+                        key={product._id}
                         product={product}
                     />
                 ))}

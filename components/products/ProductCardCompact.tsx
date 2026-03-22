@@ -12,7 +12,7 @@ export default function ProductCardCompact({
 
     return (
         <Link
-            href={`/products/${product.id}`}
+            href={`/products/${product._id}`}
             className="group blockbg-white rounded-xl border border-gray-100 overflow-hidden hover:shadow-md transition"
         >
             {/* Image */}
