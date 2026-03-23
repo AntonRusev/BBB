@@ -1,7 +1,7 @@
 import { Schema, model, models } from "mongoose"
 import type { Product } from "@/types/product"
 
-const ProductSchema = new Schema({
+const ProductSchema = new Schema<Product>({
     name: {
         type: String,
         unique: [true, "Product with this name already exists"],
@@ -45,6 +45,6 @@ const ProductSchema = new Schema({
     timestamps: true // CreatedAt and UpdatedAt fields
 })
 
-const ProductModel = models.Product || model<Product>('Product', ProductSchema) // Using the type Product to create a typed model Product
+const ProductModel = models.Product || model<Product>('Product', ProductSchema)
 
 export default ProductModel

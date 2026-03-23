@@ -31,8 +31,6 @@ export async function getProductById(id: string): Promise<Product | undefined> {
     ...product,
     _id: product._id.toString()
   };
-
-  // return await ProductModel.findById(id).lean();
 }
 
 export async function getRelatedProducts(
