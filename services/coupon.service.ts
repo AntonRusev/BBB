@@ -18,10 +18,14 @@ export async function getAllCoupons(): Promise<Coupon[]> {
 }
 
 export async function getCouponByCode(code: string): Promise<Coupon | null> {
-    const coupon = await CouponModel.findOne({ code, isActive: true }); // check if coupon is active
+    const coupon = await CouponModel.findOne({
+        code: { $regex: `^${code}$`, $options: "i" } // matching the entire string case-insensitive
+    }); // check if coupon is active
+
+    if (!coupon) return null;
 
     return {
-        ...coupon,
+        ...coupon.toObject(),
         _id: coupon._id.toString()
     };
 };

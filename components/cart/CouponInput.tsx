@@ -6,6 +6,7 @@ import { toast } from "sonner"
 import couponsData from "@/data/coupons.json"
 import { Coupon } from "@/types/coupon"
 import { useCartStore } from "@/store/cartStore"
+import { applyCouponAction } from "@/app/actions/coupon.actions"
 
 export default function CouponInput() {
     const [code, setCode] = useState("")
@@ -14,8 +15,9 @@ export default function CouponInput() {
 
     //   TODO Add some sort of ERROR or regular message if the coupon is invalid
 
-    const handleApply = () => {
-        const found = coupons.find((coupon) => coupon.code.toLowerCase() === code.toLowerCase()) // Check if the entered coupon exists
+    const handleApply = async () => {
+        // const found = coupons.find((coupon) => coupon.code.toLowerCase() === code.toLowerCase()) // Check if the entered coupon exists
+        const found = await applyCouponAction(code);
 
         if (found) {
             setCoupon(found)
