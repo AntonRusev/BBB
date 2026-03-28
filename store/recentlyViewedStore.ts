@@ -21,7 +21,7 @@ export const useRecentlyViewedStore = create<RecentlyViewedStore>()(
             //   Prevents adding the same product to the list more than once and moves the latest viewed product to first position
             addRecentlyViewed: (product) => {
                 const existing = get().products.filter(
-                    (p) => p.id !== product.id
+                    (p) => p._id !== product._id
                 )
 
                 const updated = [product, ...existing].slice(0, MAX_ITEMS)

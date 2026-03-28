@@ -3,32 +3,47 @@
 import { useState } from "react"
 import { toast } from "sonner"
 
-import couponsData from "@/data/coupons.json"
-import { Coupon } from "@/types/coupon"
 import { useCartStore } from "@/store/cartStore"
-import { applyCouponAction } from "@/app/actions/coupon.actions"
+import { applyCouponRequest } from "@/services/coupon.api"
+// import { applyCouponAction } from "@/app/actions/coupon.actions"
 
 export default function CouponInput() {
     const [code, setCode] = useState("")
     const setCoupon = useCartStore((s) => s.setCoupon)
-    const coupons = couponsData as Coupon[]
 
-    //   TODO Add some sort of ERROR or regular message if the coupon is invalid
+    async function handleApply() {
+        try {
+            const coupon = await applyCouponRequest(code);
 
-    const handleApply = async () => {
-        // const found = coupons.find((coupon) => coupon.code.toLowerCase() === code.toLowerCase()) // Check if the entered coupon exists
-        const found = await applyCouponAction(code);
-
-        if (found) {
-            setCoupon(found)
-            toast.success(`Coupon ${found.code} applied`)
-        } else {
-            setCoupon(null)
-            toast.error("Invalid coupon code")
+            if (coupon) {
+                // Success
+                setCoupon(coupon)
+                toast.success(`Coupon ${coupon.code} applied`)
+            } else {
+                toast.error("Invalid coupon code");
+            }
+        } catch (error: any) {
+            toast.error(error.message || "Invalid coupon code");
         }
+
+
 
         setCode(""); // Clear the input field
     }
+
+    // const handleApply = async () => {
+    //     const found = await applyCouponAction(code);
+
+    //     if (found) {
+    //         setCoupon(found)
+    //         toast.success(`Coupon ${found.code} applied`)
+    //     } else {
+    //         setCoupon(null)
+    //         toast.error("Invalid coupon code")
+    //     }
+
+    //     setCode(""); // Clear the input field
+    // }
 
     return (
         <div className="mt-4">

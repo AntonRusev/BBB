@@ -11,9 +11,9 @@ type CartStore = {
     coupon: Coupon | null
 
     addToCart: (product: Product) => void
-    removeFromCart: (id: number) => void
-    increaseQuantity: (id: number) => void
-    decreaseQuantity: (id: number) => void
+    removeFromCart: (id: string) => void
+    increaseQuantity: (id: string) => void
+    decreaseQuantity: (id: string) => void
     clearCart: () => void
 
     setCoupon: (coupon: Coupon | null) => void
@@ -30,7 +30,7 @@ export const useCartStore = create<CartStore>()(
             coupon: null,
 
             addToCart: (product) => {
-                const existing = get().items.find((item) => item.id === product.id)
+                const existing = get().items.find((item) => item._id === product._id)
 
                 if (existing) {
                     // Check if there is enough of the product in stock
@@ -40,7 +40,7 @@ export const useCartStore = create<CartStore>()(
                     set({
                         items: get().items.map((item) => {
                             return (
-                                item.id === product.id
+                                item._id === product._id
                                     ? { ...item, quantity: item.quantity + 1 }
                                     : item
                             );
@@ -60,14 +60,14 @@ export const useCartStore = create<CartStore>()(
             removeFromCart: (id) =>
                 // Remove a particular product from the cart based on its Id
                 set({
-                    items: get().items.filter((item) => item.id !== id),
+                    items: get().items.filter((item) => item._id !== id),
                 }),
 
             increaseQuantity: (id) => {
                 // To be used only in the Cart component
 
                 // Check if the product already exists in the cart
-                const item = get().items.find((i) => i.id === id)
+                const item = get().items.find((i) => i._id === id)
                 if (!item) return;
 
                 // Check if there is enough of the product in stock
@@ -76,7 +76,7 @@ export const useCartStore = create<CartStore>()(
                 // Increase the quantity of the product by 1
                 set({
                     items: get().items.map((item) =>
-                        item.id === id
+                        item._id === id
                             ? { ...item, quantity: item.quantity + 1 }
                             : item
                     ),
@@ -87,14 +87,14 @@ export const useCartStore = create<CartStore>()(
                 // To be used only in the Cart component
 
                 // Check if the product already exists in the cart
-                const item = get().items.find((i) => i.id === id)
+                const item = get().items.find((i) => i._id === id)
                 if (!item) return;
 
                 // Decrease the quantity of the product by 1
                 set({
                     items: get()
                         .items.map((item) =>
-                            item.id === id
+                            item._id === id
                                 ? { ...item, quantity: item.quantity - 1 }
                                 : item
                         )

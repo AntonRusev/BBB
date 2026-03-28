@@ -51,7 +51,7 @@ export default function CartItemCard({ item }: Props) {
 
                     {/* Decrease item quantity button */}
                     <button
-                        onClick={() => decreaseQuantity(item.id)}
+                        onClick={() => decreaseQuantity(item._id)}
                         className="px-3 py-1 border rounded hover:bg-gray-100"
                     >
                         -
@@ -61,7 +61,7 @@ export default function CartItemCard({ item }: Props) {
 
                     {/* Increase item quantity button */}
                     <button
-                        onClick={() => increaseQuantity(item.id)}
+                        onClick={() => increaseQuantity(item._id)}
                         className="px-3 py-1 border rounded hover:bg-gray-100"
                     >
                         +
@@ -69,7 +69,7 @@ export default function CartItemCard({ item }: Props) {
 
                     {/* Remove product from cart button */}
                     <button
-                        onClick={() => removeFromCart(item.id)}
+                        onClick={() => removeFromCart(item._id)}
                         className="ml-auto text-red-500 hover:text-red-700 text-sm"
                     >
                         Remove
