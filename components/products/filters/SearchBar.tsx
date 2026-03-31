@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 
 export default function SearchBar() {
@@ -9,24 +9,23 @@ export default function SearchBar() {
 
     const [search, setSearch] = useState(params.get("search") || "")
 
-    const applySearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-        // apply changes in real time as the search query is written
-        const value = e.target.value
-        setSearch(value)
+    // Debounced search - prevents sending requests and rerendering on every entered symbol
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            const newParams = new URLSearchParams(params.toString())
 
-        const newParams = new URLSearchParams(params);
+            // Clean up URL when search query is cleared (avoid empty search params in URL)
+            if (search) {
+                newParams.set("search", search)
+            } else {
+                newParams.delete("search")
+            }
 
-        // Keeps the URL clean if there is no search query entered
-        if (value) {
-            newParams.set("search", value)
-        }
-        else {
-            newParams.delete("search")
-        }
+            router.push(`/products?${newParams.toString()}`)
+        }, 500) // delay
 
-        newParams.set("search", e.target.value);
-        router.push(`/products?${newParams.toString()}`);
-    }
+        return () => clearTimeout(timeout)
+    }, [search, params, router])
 
     return (
         <div className="w-full bg-white border-b border-green-100 shadow-sm">
@@ -36,7 +35,7 @@ export default function SearchBar() {
                         type="text"
                         placeholder="Search products..."
                         value={search}
-                        onChange={(e) => applySearch(e)}
+                        onChange={(e) => setSearch(e.target.value)}
                         className="flex-1 border border-gray-200 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-400"
                     />
                 </div>
