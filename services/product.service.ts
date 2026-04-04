@@ -5,6 +5,7 @@ import { Product } from "@/types/product"
 
 type GetProductsParams = {
   search?: string;
+  category?: string;
   limit?: number;
 };
 
@@ -14,6 +15,7 @@ await connectDB();
 export async function getAllProducts(
   {
     search = "",
+    category = "",
     limit = 10,
   }: GetProductsParams
 ): Promise<Product[]> {
@@ -22,6 +24,11 @@ export async function getAllProducts(
   // Search (case-insensitive)
   if (search) {
     query.name = { $regex: search, $options: "i" };
+  }
+
+  // Filter
+  if (category) {
+    query.category = category;
   }
 
   const [products, total] = await Promise.all([
