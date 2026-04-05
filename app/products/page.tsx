@@ -3,6 +3,7 @@ import { getAllProducts } from "@/services/product.service";
 import PorductsList from "@/components/products/ProductsList";
 import RecentlyViewed from "@/components/products/RecentlyViewed";
 import ProductsSidebar from "@/components/products/ProductsSidebar";
+import Pagination from "@/components/Pagination";
 
 
 type ProductsPageProps = {
@@ -19,13 +20,15 @@ export default async function UserProductsPage({ searchParams }: ProductsPagePro
     // Parsed data from the URL
     const search = params.search || "";
     const category = params.category || "";
+    const page = parseInt(params.page || "1");
 
 
-    const products = await getAllProducts({
+    const { products, totalPages } = await getAllProducts({
         search,
         category,
-        limit: 30,
-    })
+        page,
+        limit: 8,
+    });
 
     return (
         <>
@@ -37,10 +40,13 @@ export default async function UserProductsPage({ searchParams }: ProductsPagePro
                     {/* List of Products */}
                     <PorductsList products={products} />
 
+                    {/* Pagination */}
+                    <Pagination currentPage={page} totalPages={totalPages} />
+
                     {/* Last viewed Products */}
                     <RecentlyViewed />
                 </div>
             </div>
         </>
     );
-};
+}

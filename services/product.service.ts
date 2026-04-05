@@ -1,11 +1,12 @@
-import { connectDB } from "@/config/database"
+import { connectDB } from "@/config/database";
 
-import ProductModel from "@/models/Product"
-import { Product } from "@/types/product"
+import ProductModel from "@/models/Product";
+import { Product } from "@/types/product";
 
 type GetProductsParams = {
   search?: string;
   category?: string;
+  page?: number;
   limit?: number;
 };
 
@@ -16,32 +17,36 @@ export async function getAllProducts(
   {
     search = "",
     category = "",
+    page = 1,
     limit = 10,
   }: GetProductsParams
-): Promise<Product[]> {
+): Promise<{ products: Product[], totalPages: number }> {
   const query: any = {};
 
   // Search (case-insensitive)
   if (search) {
     query.name = { $regex: search, $options: "i" };
-  }
+  };
 
   // Filter
   if (category) {
     query.category = category;
-  }
+  };
+
+  const skip = (page - 1) * limit;
 
   const [products, total] = await Promise.all([
-    ProductModel.find(query).limit(limit),
+    ProductModel.find(query).skip(skip).limit(limit),
     ProductModel.countDocuments(query),
   ]);
 
-  return (
-    products.map((p) => ({
+  return {
+    products: products.map((p) => ({
       ...p.toObject(),
       _id: p._id.toString(),
-    }))
-  );
+    })),
+    totalPages: Math.ceil(total / limit),
+  };
 }
 
 export async function getProductById(id: string): Promise<Product | undefined> {
